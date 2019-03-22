@@ -13,7 +13,7 @@ namespace TheMovieDb.Util
         public static string baseUrlV4 = "https://api.themoviedb.org/4/";
         public static string keyV4 = "?api_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NTMwYjMzZTVhMmZkMzU3ZTIzMTJkODU5ZDc2NjM2ZCIsInN1YiI6IjVjOTQwN2E5YzNhMzY4MmU1ZmYxYzZiNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wp8QpCyKwRRCQR6U1BenqJSApWwsAAleuHrH9N72yU8&language=pt-BR";
 
-        public static string ConvertMoney(int money)
+        public static string ConvertMoney(Int64 money)
         {
             var ret = money.ToString("F2");
             return ret;

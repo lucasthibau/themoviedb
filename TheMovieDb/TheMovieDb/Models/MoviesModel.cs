@@ -25,12 +25,12 @@ namespace TheMovieDb.Models
         public bool adult { get; set; }
         public string overview { get; set; }
         public DateTime? release_date { get; set; }
-        public int budget { get; set; }
+        public Int64 budget { get; set; }
         public List<GenresModel> genres { get; set; }
         public string homepage { get; set; }
         public string imdb_id { get; set; }
         public List<CompaniesModel> production_companies { get; set; }
-        public int revenue { get; set; }
+        public Int64 revenue { get; set; }
         public string status { get; set; }
         public string tagline { get; set; }
 
