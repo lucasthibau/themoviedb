@@ -5,24 +5,33 @@
 @{ Html.RenderPartial("_Search"); }
 
 <div class="row">
-    @foreach (var item in Model.Item1.results)
-    {
-        <div class="col-xs-3 equal">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="/movies/view/@item.id">
-                        @{string image = TheMovieDb.Util.Helpers.imagePath + "200/" + item.poster_path; }
-                        <img src="@image" class="img-responsive" alt="@item.original_title" />
-                        @item.title
-                        <br />
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>@item.vote_average
-                    </a>
+    <div class="hidden-xs col-sm-2">
+        <h2><small>Gêneros</small></h2>
+        @foreach (var genre in Model.Item2.genres)
+        {
+            <a href="/movies/category?page=1&id=@genre.id">@genre.name</a>
+            <br />
+        }
+    </div>
+    <div class="col-xs-12 col-sm-10">
+        @foreach (var item in Model.Item1.results)
+        {
+            <div class="col-xs-3 equal">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="/movies/view/@item.id">
+                            @{string image = TheMovieDb.Util.Helpers.imagePath + "200/" + item.poster_path; }
+                            <img src="@image" class="img-responsive" alt="@item.original_title" />
+                            @item.title
+                            <br />
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>@item.vote_average
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
-
 <div class="row">
     <div class="col-xs-12">
         <nav aria-label="Page navigation">
