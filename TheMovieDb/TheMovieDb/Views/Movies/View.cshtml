@@ -1,0 +1,53 @@
+﻿@model Tuple<TheMovieDb.Models.MoviesModel, TheMovieDb.Models.Videos>
+
+<div class="row padding-top-20">
+    <div class="col-xs-2 col-sm-3">
+        @{string image = TheMovieDb.Util.Helpers.imagePath + "500/" + Model.Item1.poster_path; }
+        <img src="@image" class="img-responsive" alt="@Model.Item1.original_title" />
+    </div>
+    <div class="col-xs-10 col-sm-9">
+        <h2>@Model.Item1.title</h2>
+        <h2><small>@Model.Item1.tagline</small></h2>
+        <hr />
+        <div class="detalhes">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> @Html.Raw(Model.Item1.vote_average)/10
+            <br />
+            <strong>Votos: </strong>@Model.Item1.vote_count
+            <br />
+            <strong>Descrição: </strong>@Html.Raw(Model.Item1.overview)@*Caso exista HTML ou JS na descrição*@
+            <br />
+            <strong>Título original: </strong>@Model.Item1.original_title)
+            <br />
+            <strong>Idioma original: </strong>@Model.Item1.original_language.ToUpper()
+            <br />
+            @if (Model.Item1.release_date != null)
+            {
+                <strong>Data de lançamento: </strong>@Model.Item1.release_date.Value.ToString("dd/MM/yyyy")
+                <br />
+            }
+            <strong>Orçamento: </strong><span class="money">@TheMovieDb.Util.Helpers.ConvertMoney(Model.Item1.budget)</span>
+            <br />
+            @if (!string.IsNullOrEmpty(Model.Item1.homepage))
+            {
+                <strong>Página oficial: </strong><a href="@Model.Item1.homepage" target="_blank">@Model.Item1.homepage</a>
+            }
+            <br />
+            <strong>Total arrecadado: </strong><span class="money">@TheMovieDb.Util.Helpers.ConvertMoney(Model.Item1.revenue)</span>
+        </div>
+    </div>
+</div>
+@if (Model.Item2.results.Count() > 0)
+{
+    foreach (var video in Model.Item2.results.FindAll(x => x.site == "YouTube"))
+    {
+        string videoUrl = string.Concat("https://www.youtube.com/embed/", @video.key);
+        <div class="row margin-top-20">
+            <hr />
+            <div class="col-xs-12">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="@videoUrl"></iframe>
+                </div>
+            </div>
+        </div>
+    }
+}

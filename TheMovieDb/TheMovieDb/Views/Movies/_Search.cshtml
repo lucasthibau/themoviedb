@@ -1,0 +1,9 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Search", "Movies", FormMethod.Get, new { @class = "form-group form-inline" }))
+        {
+            @Html.TextBox("title", "", new { @class = "form-control" })
+            <input type="submit" value="Pesquisar" class="btn btn-primary" />
+        }
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Tuple<TheMovieDb.Models.ListGenres, TheMovieDb.Models.ListMovies>
+
+<h2>@ViewBag.Title</h2>
+
+@{Html.RenderPartial("../Movies/_Search");}
+
+<div class="row">
+    <div class="hidden-xs col-sm-2">
+        <h2><small>Gêneros</small></h2>
+        @foreach (var genre in Model.Item1.genres)
+        {
+            <a href="/movies/category?page=1&id=@genre.id">@genre.name</a>
+            <br />
+        }
+    </div>
+    <div class="col-xs-12 col-sm-10">
+        <h2><small>Gêneros disponíveis</small></h2>
+        <div class="slider-filmes-recentes">
+            @foreach (var movie in Model.Item2.results)
+            {
+                <a href="/movies/view/@movie.id">
+                    @{string image = TheMovieDb.Util.Helpers.imagePath + "200/" + movie.poster_path; }
+                    <img src="@image" class="img-responsive" alt="@movie.original_title" />
+                    @movie.title
+                    <br />
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>@movie.vote_average
+                </a>
+            }
+        </div>
+    </div>
+</div>
